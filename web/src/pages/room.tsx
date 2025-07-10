@@ -1,7 +1,7 @@
 import { ArrowLeft, Radio } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { QuestionForm } from "@/components/question-form";
-import { QuestionItem } from "@/components/question-item";
+import { QuestionList } from "@/components/question-list";
 import { Button } from "@/components/ui/button";
 
 type RoomParams = {
@@ -23,21 +23,21 @@ export function Room() {
 						<Link to="/">
 							<Button variant="outline">
 								<ArrowLeft className="mr-2 size-4" />
-								Back to Home
+								Back to home
 							</Button>
 						</Link>
 						<Link to={`/room/${params.roomId}/audio`}>
 							<Button className="flex items-center gap-2" variant="secondary">
 								<Radio className="size-4" />
-								Record Audio
+								Record audio
 							</Button>
 						</Link>
 					</div>
 					<h1 className="mb-2 font-bold text-3xl text-foreground">
-						Question Room
+						Questions room
 					</h1>
 					<p className="text-muted-foreground">
-						Ask questions and get answers with AI
+						Make questions and receive AI answers
 					</p>
 				</div>
 
@@ -45,30 +45,7 @@ export function Room() {
 					<QuestionForm roomId={params.roomId} />
 				</div>
 
-				<div className="space-y-6">
-					<div className="flex items-center justify-between">
-						<h2 className="font-semibold text-2xl text-foreground">
-							Questions & Answers
-						</h2>
-					</div>
-
-					<QuestionItem
-						question={{
-							id: "1",
-							question: "Question 1",
-							createdAt: new Date().toISOString(),
-						}}
-					/>
-
-					<QuestionItem
-						question={{
-							id: "1",
-							question: "Question 2",
-							answer: "Answer 2",
-							createdAt: new Date().toISOString(),
-						}}
-					/>
-				</div>
+				<QuestionList roomId={params.roomId} />
 			</div>
 		</div>
 	);
